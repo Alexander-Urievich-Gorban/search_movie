@@ -1,0 +1,67 @@
+{% extends 'base.html' %}
+{% block content %}
+<!--/content-inner-section-->
+<div class="container">
+<form method="get">
+    <div class="filter_bar">
+        <div class="title"><span>ФИЛЬТРЫ</span>
+
+        </div>
+
+        {{ filter.form }}
+        <button style="background-color:white;color:black" type="submit" class="btn btn-primary">search
+        </button>
+    </div>
+
+
+</form>
+</div>
+<div class="w3_content_agilleinfo_inner" style="min-height:400px">
+    <div class="agile_featured_movies">
+
+        <!--/tv-movies-->
+
+        <h3 class="agile_w3_title hor-t">{{ genre.title }}<span>Movies</span></h3>
+        <div class="wthree_agile-requested-movies tv-movies">
+            {% for movie in filter.qs %}
+            <div class="col-md-2 w3l-movie-gride-agile requested-movies">
+                <a href="{{ movie.get_absolute.url }}" class="hvr-sweep-to-bottom"><img src="{{ movie.poster.url }}"
+                                                                                        title="Movies Pro"
+                                                                                        class="img-responsive" alt=" ">
+                    <div class="w3l-action-icon"><i class="fa fa-play-circle-o" aria-hidden="true"></i></div>
+                </a>
+                <div class="mid-1 agileits_w3layouts_mid_1_home">
+                    <div class="w3l-movie-text">
+                        <h6><a href="single.html">{{ movie.title }}</a></h6>
+                    </div>
+                    <div class="mid-2 agile_mid_2_home">
+                        <p>{{ movie.year }}</p>
+                        <div class="block-stars">
+
+                            {% for i in '12345'|make_list|slice:movie.get_full %}
+                            <a href="#"><i class="fa fa-star" aria-hidden="true"></i></a>
+                            {% endfor %}
+                            {% if movie.get_half_rating is False %}
+                            <a href="#"><i class="fa fa-star-half-o" aria-hidden="true"></i></a>
+                            {% elif movie.get_half_rating %}
+                            <a href="#"><i class="fa fa-star" aria-hidden="true"></i></a>
+                            {% endif %}
+                            {% for i in movie.get_empty_rating %}
+                            <a href="#"><i class="fa fa-star-o" aria-hidden="true"></i></a>
+                            {% endfor %}
+                        </div>
+                        <div class="clearfix"></div>
+                    </div>
+                </div>
+                <div class="ribben one">
+                    <p>NEW</p>
+                </div>
+            </div>
+            {% endfor %}
+
+            <!--//movies-->
+        </div>
+    </div>
+</div>
+<!--//content-inner-section-->
+{% endblock content %}

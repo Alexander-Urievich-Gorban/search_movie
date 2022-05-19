@@ -1,0 +1,84 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="w3_content_agilleinfo_inner">
+    <div class="agile_featured_movies">
+        <div class="inner-agile-w3l-part-head">
+            <h3 class="w3l-inner-h-title">Movie List</h3>
+            <p class="w3ls_head_para">Add short Description</p>
+        </div>
+
+        {% load crispy_forms_tags %}
+        <form method="get">
+            <div class="col-sm-4">
+
+        {{ filter.form.actors }}
+                {{ filter.form.genres }}
+                </div>
+            <div class="col-sm-7">
+                <div style="height:50px;width:400px">
+                {{ filter.form.year }}
+            </div>
+                {{ filter.form.middle_rating }}
+
+                {{ filter.form.main_ordering }}
+
+
+                </div>
+            <div class="col-sm-5">
+            <button type="submit">To found</button>
+            </div>
+        </form>
+        <div class="bs-example bs-example-tabs" role="tabpanel" data-example-id="togglable-tabs">
+
+            <ul id="myTab" class="nav nav-tabs" role="tablist">
+
+                <li role="presentation" class="active"><a href="#home" id="home-tab" role="tab" data-toggle="tab"
+                                                          aria-controls="home" aria-expanded="true"></a></li>
+            </ul>
+            <div id="myTabContent" class="tab-content">
+                <div role="tabpanel" class="tab-pane fade in active" id="home" aria-labelledby="home-tab">
+                    <div class="agile-news-table">
+                        <div class="w3ls-news-result">
+                            <h4>Search Results : <span>{{ filter.qs.count }}</span></h4>
+                        </div>
+                        <table id="table-breakpoint">
+                            <thead>
+                            <tr>
+                                <th>Movie Name</th>
+								<th>Actors</th>
+                                <th>Year</th>
+                                <th>Country</th>
+                                <th>Genre</th>
+                                <th>Rating</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            {% for movie in filter.qs %}
+                            <tr>
+                                <td class="w3-list-img"><a href="single.html"><img src="{{ movie.poster.url }}" alt=""/> <span>{{ movie.title }}</span></a>
+                                </td>
+								<td>
+								{% for actor in movie.actors.all %}
+								<a href="single.html">{{ actor }}</a>
+									{% endfor %}
+                                </td>
+                                <td>{{ movie.year }}</td>
+								<td>{{ movie.county }}</td>
+                                {% for genre in movie.genres.all %}
+                                <td class="w3-list-info"><a href="{{ genre.get_absolute_url }}">{{ genre.title }}</a>
+                                </td>
+                                {% endfor %}
+                                <td>{{ movie.middle_rating }}</td>
+                            </tr>
+                            {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+{% endblock content %}
