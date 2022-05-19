@@ -4,10 +4,7 @@ from .models import Movie, Genre, Actor
 
 
 class MovieFilter(filter.FilterSet):
-    genres = filter.MultipleChoiceFilter(field_name='title', choices=[
-        (genre.title, genre) for genre in Genre.objects.all()], method='filter_by_genres')
-    actors = filter.MultipleChoiceFilter(field_name='name', choices=[
-        (actor.name, actor) for actor in Actor.objects.all()], method='filter_by_actors')
+
     year = filter.RangeFilter()
     middle_rating = filter.RangeFilter()
 

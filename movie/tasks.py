@@ -11,8 +11,4 @@ def refresh_rating(self):
     return 'ratings is update!'
 
 
-@app.task
-def aaa():
-    print('hello denis')
-    return 'helloaaa'
 

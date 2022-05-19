@@ -81,7 +81,6 @@ class Movie(models.Model):
     views = models.ManyToManyField(Ip, related_name="movie_views", blank=True)
     year = models.PositiveSmallIntegerField("Дата выхода", default=2019)
     country = models.CharField("Страна", max_length=30, blank=True)
-    directors = models.ManyToManyField(Actor, verbose_name="режиссер", related_name="film_director", blank=True)
     actors = models.ManyToManyField(Actor, verbose_name="актеры", related_name="actors", blank=True)
     genres = models.ManyToManyField(Genre, verbose_name="жанры", related_name="genres", blank=True)
     category = models.ForeignKey(
