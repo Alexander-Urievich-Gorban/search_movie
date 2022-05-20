@@ -241,9 +241,7 @@ EMAIL_BACKEND = 'django.core.mail.backends.dummy.EmailBackend'
 
 SITE_ID = 1
 AUTHENTICATION_BACKENDS = (
-    'social_core.backends.vk.VKOAuth2',
-    'rest_framework_social_oauth2.backends.DjangoOAuth2',
-    'django.contrib.auth.backends.ModelBackend',
+   'django.contrib.auth.backends.ModelBackend',
 )
 
 REST_FRAMEWORK = {
@@ -308,3 +306,4 @@ EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_HOST_USER = '22222226@gmail.com'
 EMAIL_HOST_PASSWORD = '11111'
 EMAIL_PORT = 587
+
